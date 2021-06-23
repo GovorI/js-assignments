@@ -57,9 +57,7 @@ function getCicleCircumference(radius) {
  */
 function getAverage(value1, value2) {
     //throw new Error('Not implemented');
-
-    return Number.prototype.parseFloat(((value1 + value2)/2))
-
+    return value1/2 + value2/2
 }
 
 /**
@@ -127,6 +125,9 @@ function getLinearEquationRoot(a, b) {
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
     throw new Error('Not implemented');
+    /*let deltaX = x2 - x1
+    let deltaY = y2 - y1
+    return Math.atan2(deltaY, deltaX)*/
 }
 
 /**
@@ -142,7 +143,10 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+    let last = value.toString().slice(-1)
+    return Number(last)
+
 }
 
 
@@ -176,7 +180,9 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+    return Math.sqrt(a*a + b*b + c*c)
+
 }
 
 /**
@@ -198,6 +204,16 @@ function getParallelipidedDiagonal(a,b,c) {
  */
 function roundToPowerOfTen(num, pow) {
     throw new Error('Not implemented');
+    switch (pow){
+        case 0:
+            return num
+        case 1:
+            return Math.round(num * 0.1)/0.1
+        case 2:
+            return Math.round(num * 0.01)/0.01
+        case 3:
+            return Math.round(num * 0.001)/0.001
+    }
 }
 
 /**
@@ -218,10 +234,21 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    throw new Error('Not implemented');
-    // if(n % 2 ===0){
-    //     return false
-    // }else return true
+    //throw new Error('Not implemented');
+    if (n <= 3){
+        return n > 1
+    }
+    if ((n % 2 === 0) || (n % 3 === 0)){
+        return false
+    }
+    let count = 5
+    while (Math.pow(count, 2) <= n) {
+        if (n % count === 0 || n % (count + 2) === 0){
+            return false
+        }
+        count += 6
+    }
+    return true
 }
 
 /**
@@ -240,7 +267,16 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+    if(value === null) {
+        return def
+    }else if(isNaN(value)){
+        return def
+    }else if(typeof(value) === "string"){
+        return Number(value)
+    }else if(typeof(value) === "number"){
+        return value
+    }else return value
 
 }
 
